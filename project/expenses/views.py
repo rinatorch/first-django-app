@@ -3,5 +3,6 @@ from django.http import HttpResponse
 from expenses.models import Summary, Detail
 
 def index(request):
-  total=Summary.objects.count()
-  return HttpResponse(f"Hello, world. You're at the expenses index and we have {total} summary objects")
+  total_summaries = Summary.objects.count()
+  total_detail = Detail.objects.count()
+  return render(request, 'expenses/index.html', context={'total_summaries': total_summaries, 'total_detail': total_detail})
